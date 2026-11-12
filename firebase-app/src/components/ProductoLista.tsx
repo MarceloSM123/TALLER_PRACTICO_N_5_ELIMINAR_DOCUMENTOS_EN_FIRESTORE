@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {obtenerProductos, type ProductoConId} from "../services/productoService";
+import {obtenerProductos,eliminarProducto type ProductoConId} from "../services/productoService";
 
 interface ProductoListaProps {
     onEditar: (producto: ProductoConId) => void;
@@ -19,6 +19,16 @@ export const ProductoLista = ({ onEditar }: ProductoListaProps) => {
         }
         cargarProductos();
     }, []);
+
+const hansleEliminarProducto = async (id: string) => {
+    try {
+        await eliminarProducto(id);
+        console.log(`Producto con ID ${id} eliminado correctamente.`);
+    } catch (error) {
+        console.error("Error al eliminar producto: ", error);
+    }
+};
+
     return(
         <div>
             <h2>Lista de productos</h2>
@@ -30,6 +40,7 @@ export const ProductoLista = ({ onEditar }: ProductoListaProps) => {
                         <p>Precio: ${producto.precio.toFixed(2)}</p>
                         <p>Stock: {producto.stock}</p>
                         <button onClick={() => onEditar(producto)}>Editar</button>
+                        <button onClick={() => hansleEliminarProducto(producto.id)}>Eliminar</button>
                     </div>
                 ))
             }
