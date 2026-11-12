@@ -1,5 +1,5 @@
 import { db } from '../fireBase'
-import { collection, addDoc, getDocs, updateDoc,doc } from 'firebase/firestore'
+import { collection, addDoc, getDocs, updateDoc,doc, deleteDoc} from 'firebase/firestore'
 
 export interface Producto {
   nombre: string
