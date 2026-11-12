@@ -47,3 +47,9 @@ await updateDoc(productoRef, {
 }
 )}
 
+//-------Taller 5
+export const eliminarProducto = async (id: string) => {
+  const productoRef = doc(db, 'productos', id)
+  await deleteDoc(productoRef)
+}
+
