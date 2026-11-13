@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {obtenerProductos,eliminarProducto type ProductoConId} from "../services/productoService";
+import {obtenerProductos,eliminarProducto, type ProductoConId} from "../services/productoService";
 
 interface ProductoListaProps {
     onEditar: (producto: ProductoConId) => void;
@@ -24,6 +24,8 @@ const hansleEliminarProducto = async (id: string) => {
     try {
         await eliminarProducto(id);
         console.log(`Producto con ID ${id} eliminado correctamente.`);
+        const productosActualizados = productos.filter((producto) => producto.id !== id);
+        setProductos(productosActualizados);
     } catch (error) {
         console.error("Error al eliminar producto: ", error);
     }
